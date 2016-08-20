@@ -17,4 +17,4 @@
 
 **扫一扫看[demo](http://hingsir.com/badge/samples/browser.html)**
 
-![二维码](http://qr.liantu.com/api.php?w=256&m=10&bg=f7f7f7&text=hhttp://hingsir.com/badge/samples/browser.html)
+![二维码](http://qr.liantu.com/api.php?w=200&m=10&bg=f7f7f7&text=http://hingsir.com/badge/samples/browser.html)
