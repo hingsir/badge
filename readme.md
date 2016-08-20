@@ -1,4 +1,4 @@
-### bagde 仿QQ未读提醒
+### badge 仿QQ未读提醒
 > 拖动徽章可消除未读，拖动至初始位置则不消除。
 
 #### 使用方法
@@ -17,4 +17,4 @@
 
 **扫一扫看[demo](http://hingsir.com/badge/samples/browser.html)**
 
-![二维码](http://qr.liantu.com/api.php?w=200&m=10&bg=f7f7f7&text=http://hingsir.com/badge/samples/browser.html)
+![二维码](samples/badge.jpeg)
