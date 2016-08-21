@@ -10,7 +10,10 @@
         count: 8,
         overflowCount: 99, // 超过此数字显示+号，默认99
         background: '#f50', // 背景色
-        color: '#fff' // 前景色
+        color: '#fff', // 前景色
+        onRemoved: function(inst){
+            console.log(this, inst)
+        } // 消除后回调
     })
 </script>
 ```

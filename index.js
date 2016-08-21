@@ -17,6 +17,7 @@
             this.container = options.container;
         }
         this.count = options.count = options.count || 0;
+        options.onRemoved = options.onRemoved || function(){};
         options.overflowCount = options.overflowCount || 99;
         options.dot = options.dot || false;
         options.background = options.background || '#f50';
@@ -45,31 +46,36 @@
             sup.style.boxSizing = 'border-box';
             sup.innerHTML = options.count > options.overflowCount ? (options.overflowCount + '+') : options.count;
         }
-        sup.addEventListener('touchmove', badgeDraging);
-        sup.addEventListener('touchend', badgeDragEnd);
+        sup.addEventListener('touchmove', badgeDraging(self, options));
+        sup.addEventListener('touchend', badgeDragEnd(self, options));
         self.container.appendChild(sup);
         sup.__defaultRect__ = sup.getBoundingClientRect();
         self.sup = sup;
     }
 
-    function badgeDraging(event){
-        var target = event.target;
-        target.style.position = 'fixed';
-        target.style.left = event.changedTouches[0].pageX + 'px';
-        target.style.top = event.changedTouches[0].pageY + 'px';
+    function badgeDraging(badge, options){
+        return function(event){
+            var target = event.target;
+            target.style.position = 'fixed';
+            target.style.left = event.changedTouches[0].pageX + 'px';
+            target.style.top = event.changedTouches[0].pageY + 'px';
+        }
     }
-    function badgeDragEnd(event){
-        var target = event.target,
-            pageX = event.changedTouches[0].pageX,
-            pageY = event.changedTouches[0].pageY,
-            defaultLeft = target.__defaultRect__.left,
-            defaultTop = target.__defaultRect__.top;
-        if(Math.abs(pageX - defaultLeft) < 10 && Math.abs(pageY - defaultTop) < 10){
-            target.style.left = defaultLeft + 'px';
-            target.style.top = defaultTop + 'px';
-            target.style.position = 'static'
-        }else{
-            target.parentNode.removeChild(target);
+    function badgeDragEnd(badge, options){
+        return function(event){
+            var target = event.target,
+                pageX = event.changedTouches[0].pageX,
+                pageY = event.changedTouches[0].pageY,
+                defaultLeft = target.__defaultRect__.left,
+                defaultTop = target.__defaultRect__.top;
+            if(Math.abs(pageX - defaultLeft) < 15 && Math.abs(pageY - defaultTop) < 15){
+                target.style.left = defaultLeft + 'px';
+                target.style.top = defaultTop + 'px';
+                target.style.position = 'static'
+            }else{
+                target.parentNode.removeChild(target);
+                options.onRemoved.call(badge, badge);
+            }
         }
     }
 

@@ -61,7 +61,10 @@
     <script>
         new Badge({
             container: '.msg-badge',
-            count: 8
+            count: 8,
+            onRemoved: function(inst){
+                alert('removed callback')
+            }
         })
         new Badge({
             container: '.friend-badge',

@@ -1,6 +1,6 @@
 {
   "name": "qq-badge",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "QQ unread notifications",
   "main": "index.js",
   "scripts": {
